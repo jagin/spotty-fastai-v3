@@ -1,0 +1,15 @@
+name: fastai
+channels:
+  - conda-forge
+  - pytorch
+  - fastai
+dependencies:
+  - python=3.6
+  - pytorch=1.0.0=py3.6_cuda9.0.176_cudnn7.4.1_1
+  - cuda90=1.0
+  - magma-cuda90=2.4.0
+  - torchvision=0.2.1
+  - fastprogress=0.1.18
+  - fastai=1.0.42
+  - dataclasses=0.6
+  - jupyter=1.0.0

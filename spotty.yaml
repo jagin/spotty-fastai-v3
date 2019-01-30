@@ -1,0 +1,30 @@
+project:
+  name: fastai
+  remoteDir: /workspace/fastai
+  syncFilters:
+    - exclude:
+        - .git/*
+
+instance:
+  region: us-west-2
+  instanceType: p2.xlarge
+  volumes:
+    - name: fastai
+      directory: /workspace
+      size: 50
+      deletionPolicy: retain
+  docker:
+    file: Dockerfile
+    workingDir: /workspace/fastai
+    dataRoot: /workspace/docker
+    runtimeParameters: ['--ipc=host']
+  ports: [8888]
+  
+scripts:
+  setup: |
+    if [ ! -d "course-v3" ]; then git clone https://github.com/fastai/course-v3; else git -C course-v3 pull; fi
+    read -n 1 -s -r -p "Press any key to continue..." key
+  jupyter: |
+    jupyter notebook
+  nvsmi: |
+    watch -d -n 0.5 nvidia-smi
